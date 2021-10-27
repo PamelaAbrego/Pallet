@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizados</title>
+</head>
+<body>
+    <h1>Personalizados</h1>
+
+    <table align="center" border="1" style="width:auto; height:20px;">
+        <tr>
+          <th class="col">Fecha</th>
+          <th class="col">Cliente</th>
+          <th class="col">Correo</th>
+          <th class="col">Celular</th>
+          <th class="col">Descripción</th>
+          <th class="col">Botón</th>
+
+          {% for item in datos %}
+          <tr>
+            <th>{{item['Fecha']}}</th>
+            <th>{{item['Nombre']}}</th>
+            <th>{{item['Correo']}}</th>
+            <th>{{item['Celular']}}</th>
+            <th>{{item['Descripción']}}</th>
+            <th>
+              <form action="{{ url_for('personalizados') }}" method="POST">
+                <input type="hidden" name="fecha" id="fecha" value="{{item['Fecha']}}">
+                <input type="hidden" name="nombre" id="nombre" value="{{item['Nombre']}}">
+                <input type="hidden" name="celular" id="celular" value="{{item['Celular']}}">
+                <input type="hidden" name="correo" id="correo" value="{{item['Correo']}}">
+                <input type="hidden" name="descripcion" id="descripcion" value="{{item['Descripción']}}">
+                <input type="submit" name="submit" id="submit" value="Enviar mensaje">
+              </form>
+            </th>
+        </tr>
+          {% endfor %}
+        </tr>
+    </table>
+    <br><br>
+    <a href="personalizadosEnviados">Ver mensajes enviados</a>
+
+</body>
+</html>

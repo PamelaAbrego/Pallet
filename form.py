@@ -3,11 +3,13 @@ import pywhatkit
 
 # pywhatkit.sendwhatmsg("+50375477081", "Hola",24,20,3) 
 #pywhatkit.sendwhatmsg_instantly("+50371809799", "Hola",5,True,10)
+from datetime import datetime
+print(datetime.today())
 
-url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-pbxp9Zx1lscyogsyNQU3TjLsqQTrrF1Is-YYHzzYEr-spE061aGMFFQ1s5Su-_NQtqh9yBJlNW_F/pub?gid=630035512&single=true&output=csv"
+url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTyj9XZujJrqeRlIafFoeIhQ5JrDcRybioZy5PVV7Z5ZoB9m-JOYPchfG-hEnE62XjLg4zO78aFfj4j/pub?output=csv"
 df = pd.read_csv(url)
 
-print(df.loc[:,'Categoría'][0])
+print(df)
 
 i=0
 articulo = []
@@ -28,8 +30,6 @@ while i <= len(df.loc[:,'Nombre']) -1:
     i=i+1
 #x = df.loc[:,'ID']
 
-print(articulo)
-print(cantidad)
 #print(len(x))
 
 datos = []

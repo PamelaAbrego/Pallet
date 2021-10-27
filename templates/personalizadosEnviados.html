@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizados Enviados</title>
+</head>
+<body>
+    <h1>Personalizados Enviados</h1>
+
+    <table align="center" border="1" style="width:auto; height:20px;">
+        <tr>
+          <th class="col">Fecha</th>
+          <th class="col">Cliente</th>
+          <th class="col">Correo</th>
+          <th class="col">Celular</th>
+          <th class="col">Descripción</th>
+
+          {% for item in datos %}
+          <tr>
+            <th>{{item['Fecha']}}</th>
+            <th>{{item['Nombre']}}</th>
+            <th>{{item['Correo']}}</th>
+            <th>{{item['Celular']}}</th>
+            <th>{{item['Descripción']}}</th>
+        </tr>
+          {% endfor %}
+        </tr>
+    </table>
+</body>
+</html>

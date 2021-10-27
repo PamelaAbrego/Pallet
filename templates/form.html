@@ -34,6 +34,7 @@
                 <input type="hidden" name="categoria" id="categoria" value="{{item[4]}}">
                 <input type="hidden" name="articulo" id="articulo" value="{{item[5]}}">
                 <input type="hidden" name="cantidad" id="cantidad" value="{{item[6]}}">
+                <input type="hidden" name="data" id="data" value={{data}}>
                 <input type="submit" name="submit" id="submit" value="Enviar mensaje">
               </form>
             </th>
@@ -41,6 +42,11 @@
           {% endfor %}
         </tr>
     </table>
+    <br>
+
+    <a href="personalizados">personalizados</a>
+    <a class="read-more" href="aprobados">Aprobados</a>
+    <a href="desaprobados">Desaprobados</a>
 
 </body>
 </html>

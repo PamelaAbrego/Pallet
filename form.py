@@ -11,6 +11,8 @@ df = pd.read_csv(url)
 
 print(df)
 
+print(len(df.isna('Artículo Hogar')))
+
 i=0
 articulo = []
 cantidad = []

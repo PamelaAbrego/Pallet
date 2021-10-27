@@ -75,41 +75,6 @@ class PersonalizadosLogic(PybaLogic):
         else:
             return []
 
-    def deleteUsuario(self, id):
-        database = self.databaseObj
-        sql = f"DELETE FROM `heroku_de080cfa793afc7`.`usuarios` WHERE id = {id};"
-        rows = database.executeNonQueryRows(sql)
-        return rows
-
-    def checkUser(self, user):
-        database = self.databaseObj
-        sql = f"SELECT user FROM `heroku_de080cfa793afc7`.`usuarios` WHERE user like '{user}';"
-        result = database.executeQuery(sql)
-        return result
-
-    def getUserByName(self, userName):
-        database = self.createDatabaseObj()
-        sql = (
-            "SELECT user, password, salt, role "
-            + f"FROM heroku_de080cfa793afc7.usuarios where user like '{userName}';"
-        )
-        result = database.executeQuery(sql)
-        if len(result) > 0:
-            return result[0]
-        else:
-            return []
-
-    def getEmailByName(self, userName):
-        database = self.createDatabaseObj()
-        sql = (
-            "SELECT email "
-            + f"FROM heroku_de080cfa793afc7.usuarios where user like '{userName}';"
-        )
-        result = database.executeQuery(sql)
-        if len(result) > 0:
-            return result[0]["email"]
-        else:
-            return []
 
 
 

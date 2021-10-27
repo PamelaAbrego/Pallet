@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+</head>
+<body>
+    <h1>Catálogo</h1>
+    <table align="center" border="1" style="width:auto; height:20px;">
+        <tr>
+          <th class="col">Fecha</th>
+          <th class="col">Cliente</th>
+          <th class="col">Correo</th>
+          <th class="col">Celular</th>
+          <th class="col">Categoría</th>
+          <th class="col">Artículo</th>
+          <th class="col">Cantidad</th>
+          <th class="col">Botón</th>
+
+          {% for item in data %}
+          <tr>
+            <th>{{item['Fecha']}}</th>
+            <th>{{item['Nombre']}}</th>
+            <th>{{item['Correo']}}</th>
+            <th>{{item['Celular']}}</th>
+            <th>{{item['Categoría']}}</th>
+            <th>{{item['Producto']}}</th>
+            <th>{{item['Cantidad']}}</th>
+            <th>
+              <form action="{{ url_for('home') }}" method="POST">
+                <input type="hidden" name="nombre" id="nombre" value="{{item[1]}}">
+                <input type="hidden" name="celular" id="celular" value="{{item[3]}}">
+                <input type="hidden" name="categoria" id="categoria" value="{{item[4]}}">
+                <input type="hidden" name="articulo" id="articulo" value="{{item[5]}}">
+                <input type="hidden" name="cantidad" id="cantidad" value="{{item[6]}}">
+                <input type="hidden" name="data" id="data" value={{data}}>
+                <input type="submit" name="submit" id="submit" value="Enviar mensaje">
+              </form>
+            </th>
+        </tr>
+          {% endfor %}
+        </tr>
+    </table>
+
+    <a href="catalogoEnviados">Enviados</a>
+</body>
+</html>

@@ -6,19 +6,23 @@ from datetime import datetime
 from logic.catalogos_logic import CatalogoLogic
 from routes.personalizados_route import Personalizados
 from routes.personalizadosEnviados_route import PersonalizadosEnviados
+from routes.catalogo_route import Catalogo
+from routes.catalogoEnviados_route import CatalogoEnviados
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 Personalizados.configure_routes(app)
 PersonalizadosEnviados.configure_routes(app)
+Catalogo.configure_routes(app)
+CatalogoEnviados.configure_routes(app)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "GET":
         # datos = Funciones().getAllCompras()
         # return render_template("form.html", data=datos)
-        return render_template("form.html", datos = [])
+        return render_template("main.html", datos = [])
     elif request.method == "POST":
         datos = Funciones().getAllCompras()
         nombre = request.form["nombre"]
@@ -37,7 +41,7 @@ def home():
             # mensaje = "Nombre: " + nombre + " , celular: " + celular + " , categoria: " + categoria + " , articulo: " + articulo + " , cantidad: " + cantidad
             pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
             
-        return render_template("form.html", data=datos)
+        return render_template("main.html", data=datos)
 
 def desaprobados():
     return render_template("desaprobados.html")

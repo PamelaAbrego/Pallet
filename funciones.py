@@ -1,5 +1,6 @@
 import pandas as pd
 from logic.personalizados_logic import PersonalizadosLogic
+from logic.catalogos_logic import CatalogoLogic
 
 class Funciones():
     def __init__(self):
@@ -30,53 +31,54 @@ class Funciones():
         datos = PersonalizadosLogic().getAllPersonalizadosEnviados()
         return datos
 
-
-    def getAllCompras(self):
+    def moveBdCatalogo(self):
         df = self.df
         datos = []
-        i=0
-        articulo = []
-        cantidad = []
-        while i <= len(df.loc[:,'Nombre']) -1:
-            if not pd.isna(df['Artículo Hogar'][i]):
-                articulo.append(df.loc[:,'Artículo Hogar'][i])
-                cantidad.append(df.loc[:,'Cantidad Hogar'][i])
-            if not pd.isna(df['Artículo Cocina'][i]):
-                articulo.append(df.loc[:,'Artículo Cocina'][i])
-                cantidad.append(df.loc[:,'Cantidad Cocina'][i])
-            if not pd.isna(df['Artículo Baño'][i]):
-                articulo.append(df.loc[:,'Artículo Baño'][i])
-                cantidad.append(df.loc[:,'Cantidad Baño'][i])
-            if not pd.isna(df['Artículo Jardín'][i]):
-                articulo.append(df.loc[:,'Artículo Jardín'][i])
-                cantidad.append(df.loc[:,'Cantidad Jardín'][i])
-            i=i+1
-        i =0
-        while i <= len(df.loc[:,'Nombre'])-1:
-            compra = [df.loc[:,'Marca temporal'][i],df.loc[:,'Nombre'][i],df.loc[:,'Correo'][i],df.loc[:,'Celular'][i], df.loc[:,'Categoría'][i], articulo[i], cantidad[i]]
-            datos.append(compra)
-            i = i+1
+        if len(df.loc[:,'Nombre']) != len(CatalogoLogic().getAllCatalogo()):
+            i = 0
+            datos = []
+            articulo = []
+            cantidad = []
+            while i <= len(df.loc[:,'Nombre'])-1:
+                if not pd.isna(df['Artículo Hogar'][i]):
+                    articulo.append(df.loc[:,'Artículo Hogar'][i])
+                    cantidad.append(df.loc[:,'Cantidad Hogar'][i])
+                if not pd.isna(df['Artículo Cocina'][i]):
+                    articulo.append(df.loc[:,'Artículo Cocina'][i])
+                    cantidad.append(df.loc[:,'Cantidad Cocina'][i])
+                if not pd.isna(df['Artículo Baño'][i]):
+                    articulo.append(df.loc[:,'Artículo Baño'][i])
+                    cantidad.append(df.loc[:,'Cantidad Baño'][i])
+                if not pd.isna(df['Artículo Jardín'][i]):
+                    articulo.append(df.loc[:,'Artículo Jardín'][i])
+                    cantidad.append(df.loc[:,'Cantidad Jardín'][i])
+                else:
+                    articulo.append(0)
+                    cantidad.append(0)
+                i=i+1
+            i =0
+            m=0
+            while i <= len(df.loc[:,'Nombre'])-1:
+                catalogo = []
+                if df.loc[:,'Producto'][i] == "Catálogo":
+                    m=m+1
+                    catalogo = [df.loc[:,'Marca temporal'][i],df.loc[:,'Nombre'][i],df.loc[:,'Correo'][i],df.loc[:,'Celular'][i], df.loc[:,'Categoría'][i], articulo[i], cantidad[i]]
+                    datos.append(catalogo)
+                i = i+1
+            n= len(CatalogoLogic().getAllCatalogo())
+            while n <= m-1:
+                CatalogoLogic().insertCatalogo(datos[n][0],datos[n][1],datos[n][2], datos[n][3], datos[n][4], datos[n][5], datos[n][6])
+                n = n+1
+        return 1
+
+    def getAllCatalogoSinEnviar(self):
+        datos = CatalogoLogic().getAllCatalogoSinEnviar()
         return datos
 
-    def getAllPersonalizados(self):
-        df = self.df
-        i =0
-        datos = []
-        while i <= len(df.loc[:,'Nombre'])-1:
-            pedido = [df.loc[:,'Marca temporal'][i],df.loc[:,'Nombre'][i],df.loc[:,'Correo'][i],df.loc[:,'Celular'][i], df.loc[:,'Descripción'][i]]
-            datos.append(pedido)
-            i = i+1
+    def getAllCatalogoEnviados(self):
+        datos = CatalogoLogic().getAllCatalogoEnviados()
         return datos
 
 
-    def mensajeEnviado(self, datos):
-        celulares = []
-        i=0
-        while i <= len(self.df.loc[:,'ID'])-1:
-            celulares.append(self.df.loc[:,'Celular'][i])
-            i = i+1
-        
-        if celular in celulares:
-            return True
-        else:
-            return False
+
+

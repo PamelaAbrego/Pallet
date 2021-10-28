@@ -7,7 +7,7 @@ class CatalogoLogic(PybaLogic):
     def insertCatalogo(self, fecha, nombre, correo, celular, categoria, articulo, cantidad):
         database = self.databaseObj
         sql = (
-            "INSERT INTO `pallet`.`catalogo`(`id`, `Fecha`, `Nombre`, `Correo`, `Celular`, `Categoría`, `Producto`, `Cantidad`, `Enviado`)"
+            "INSERT INTO `heroku_de080cfa793afc7`.`catalogo`(`id`, `Fecha`, `Nombre`, `Correo`, `Celular`, `Categoría`, `Producto`, `Cantidad`, `Enviado`)"
             + f"VALUES (0,'{fecha}', '{nombre}', '{correo}','{celular}','{categoria}' , '{articulo}',{cantidad},0);"
         )
         rows = database.executeNonQueryRows(sql)
@@ -17,7 +17,7 @@ class CatalogoLogic(PybaLogic):
         database = self.createDatabaseObj()
         sql = (
             "SELECT * "
-            + f"FROM pallet.catalogo;"
+            + f"FROM heroku_de080cfa793afc7.catalogo;"
         )
         result = database.executeQuery(sql)
         if len(result) > 0:
@@ -28,7 +28,7 @@ class CatalogoLogic(PybaLogic):
     def updateEnviado(self, id):
         database = self.databaseObj
         sql = (
-            "UPDATE `pallet`.`catalogo`"
+            "UPDATE `heroku_de080cfa793afc7`.`catalogo`"
             + f"SET `Enviado` = 1 "
             + f"WHERE `id` = {id};"
         )
@@ -37,7 +37,7 @@ class CatalogoLogic(PybaLogic):
 
     def getIdPersonalizado(self, fecha, nombre, celular, correo, descripcion):
         database = self.databaseObj
-        sql = f"SELECT id FROM pallet.personalizados where Fecha like '{fecha}' and Nombre like '{nombre}' and Celular like '{celular}' and Correo like '{correo}' and Descripción like '{descripcion}';"
+        sql = f"SELECT id FROM heroku_de080cfa793afc7.personalizados where Fecha like '{fecha}' and Nombre like '{nombre}' and Celular like '{celular}' and Correo like '{correo}' and Descripción like '{descripcion}';"
         result = database.executeQuery(sql)
         return result
 
@@ -55,7 +55,7 @@ class CatalogoLogic(PybaLogic):
         database = self.createDatabaseObj()
         sql = (
             "SELECT * "
-            + f"FROM pallet.catalogo WHERE Enviado like '0';"
+            + f"FROM heroku_de080cfa793afc7.catalogo WHERE Enviado like '0';"
         )
         result = database.executeQuery(sql)
         if len(result) > 0:
@@ -67,7 +67,7 @@ class CatalogoLogic(PybaLogic):
         database = self.createDatabaseObj()
         sql = (
             "SELECT * "
-            + f"FROM pallet.catalogo WHERE Enviado like '1';"
+            + f"FROM heroku_de080cfa793afc7.catalogo WHERE Enviado like '1';"
         )
         result = database.executeQuery(sql)
         if len(result) > 0:

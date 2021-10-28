@@ -7,6 +7,11 @@
 </head>
 <body>
     <h1>Catálogo</h1>
+
+    <form action="{{ url_for('catalogo') }}" method="POST">
+      <input type="submit" name="submit" id="submit" value="Enviar mensaje">
+    </form>
+
     <table align="center" border="1" style="width:auto; height:20px;">
         <tr>
           <th class="col">Fecha</th>
@@ -16,7 +21,6 @@
           <th class="col">Categoría</th>
           <th class="col">Artículo</th>
           <th class="col">Cantidad</th>
-          <th class="col">Botón</th>
 
           {% for item in data %}
           <tr>
@@ -28,12 +32,14 @@
             <th>{{item['Producto']}}</th>
             <th>{{item['Cantidad']}}</th>
             <th>
-              <form action="{{ url_for('home') }}" method="POST">
-                <input type="hidden" name="nombre" id="nombre" value="{{item[1]}}">
-                <input type="hidden" name="celular" id="celular" value="{{item[3]}}">
-                <input type="hidden" name="categoria" id="categoria" value="{{item[4]}}">
-                <input type="hidden" name="articulo" id="articulo" value="{{item[5]}}">
-                <input type="hidden" name="cantidad" id="cantidad" value="{{item[6]}}">
+              <form action="{{ url_for('catalogo') }}" method="POST">
+                <input type="hidden" name="fecha" id="fecha" value="{{item['Fecha']}}">
+                <input type="hidden" name="nombre" id="nombre" value="{{item['Nombre']}}">
+                <input type="hidden" name="celular" id="celular" value="{{item['Celular']}}">
+                <input type="hidden" name="correo" id="correo" value="{{item['Correo']}}">
+                <input type="hidden" name="categoria" id="categoria" value="{{item['Categoría']}}">
+                <input type="hidden" name="articulo" id="articulo" value="{{item['Producto']}}">
+                <input type="hidden" name="cantidad" id="cantidad" value="{{item['Cantidad']}}">
                 <input type="hidden" name="data" id="data" value={{data}}>
                 <input type="submit" name="submit" id="submit" value="Enviar mensaje">
               </form>

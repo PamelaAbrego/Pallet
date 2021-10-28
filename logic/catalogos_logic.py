@@ -35,9 +35,9 @@ class CatalogoLogic(PybaLogic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
-    def getIdPersonalizado(self, fecha, nombre, celular, correo, descripcion):
+    def getIdCatalogo(self, fecha, nombre, celular, correo, categoria, producto, cantidad):
         database = self.databaseObj
-        sql = f"SELECT id FROM heroku_de080cfa793afc7.personalizados where Fecha like '{fecha}' and Nombre like '{nombre}' and Celular like '{celular}' and Correo like '{correo}' and Descripción like '{descripcion}';"
+        sql = f"SELECT id FROM heroku_de080cfa793afc7.catalogo where Fecha like '{fecha}' and Nombre like '{nombre}' and Celular like '{celular}' and Correo like '{correo}' and Categoría like '{categoria}' and Producto like '{producto}' and Cantidad = {cantidad};"
         result = database.executeQuery(sql)
         return result
 

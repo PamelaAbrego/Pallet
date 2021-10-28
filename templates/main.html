@@ -6,47 +6,15 @@
     <title></title>
 </head>
 <body>
-    <h1>Respuesta del form:</h1>
-    <table align="center" border="1" style="width:auto; height:20px;">
-        <tr>
-          <th class="col">Fecha</th>
-          <th class="col">Cliente</th>
-          <th class="col">Correo</th>
-          <th class="col">Celular</th>
-          <th class="col">Categoría</th>
-          <th class="col">Artículo</th>
-          <th class="col">Cantidad</th>
-          <th class="col">Botón</th>
-
-          {% for item in data %}
-          <tr>
-            <th>{{item[0]}}</th>
-            <th>{{item[1]}}</th>
-            <th>{{item[2]}}</th>
-            <th>{{item[3]}}</th>
-            <th>{{item[4]}}</th>
-            <th>{{item[5]}}</th>
-            <th>{{item[6]}}</th>
-            <th>
-              <form action="{{ url_for('home') }}" method="POST">
-                <input type="hidden" name="nombre" id="nombre" value="{{item[1]}}">
-                <input type="hidden" name="celular" id="celular" value="{{item[3]}}">
-                <input type="hidden" name="categoria" id="categoria" value="{{item[4]}}">
-                <input type="hidden" name="articulo" id="articulo" value="{{item[5]}}">
-                <input type="hidden" name="cantidad" id="cantidad" value="{{item[6]}}">
-                <input type="hidden" name="data" id="data" value={{data}}>
-                <input type="submit" name="submit" id="submit" value="Enviar mensaje">
-              </form>
-            </th>
-        </tr>
-          {% endfor %}
-        </tr>
-    </table>
+    <h1>Pallet</h1>
     <br>
-
-    <a href="personalizados">personalizados</a>
-    <a class="read-more" href="catalogo">catalogo</a>
-    <a href="desaprobados">Desaprobados</a>
+    <h1>Nuevos:</h1>
+    <a href="personalizados">Ver pedidos personalizados</a>
+    <a class="read-more" href="catalogo">Ver pedidos de catálogo</a>
+    <br>
+    <h1>Contestados:</h1>
+    <a href="personalizadosEnviados">Ver pedidos personalizados contestados</a>
+    <a href="catalogoEnviados">Ver pedidos de catálogo contestados</a>
 
 </body>
 </html>

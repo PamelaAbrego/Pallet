@@ -16,12 +16,35 @@ class Catalogo:
                 datos = Funciones().getAllCatalogoSinEnviar()
                 return render_template("catalogo.html", data=datos)
             elif request.method == "POST":
-                datos = Funciones().getAllCatalogoSinEnviar()
-                for item in datos:
-                    mensaje = "Nombre: " + item['Nombre'] + ", celular: " + str(item['Celular']) + ", categoría: " + item['Categoría'] + " artículo: " + item['Producto'] + " cantidad: " + str(item['Cantidad'])
-                    celular = "+503"+str(item['Celular'])
-                    pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
-                    id = CatalogoLogic().getIdCatalogo(item['Fecha'], item['Nombre'], item['Celular'], item['Correo'], item['Categoría'], item['Producto'], item['Cantidad'])[0]['id']
-                    CatalogoLogic().updateEnviado(id)
+                envio = request.form["envio"]
+                if envio == "todos":
+                    datos = Funciones().getAllCatalogoSinEnviar()
+                    for item in datos:
+                        mensaje = "Nombre: " + item['Nombre'] + ", celular: " + str(item['Celular']) + ", categoría: " + item['Categoría'] + " artículo: " + item['Producto'] + " cantidad: " + str(item['Cantidad'])
+                        celular = "+503"+str(item['Celular'])
+                        pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
+                        id = CatalogoLogic().getIdCatalogo(item['Fecha'], item['Nombre'], item['Celular'], item['Correo'], item['Categoría'], item['Producto'], item['Cantidad'])[0]['id']
+                        CatalogoLogic().updateEnviado(id)
+                    redirect("http://127.0.0.1:5000/")
+                    return render_template("main.html")
+                if envio == "uno":
+                    fecha = request.form["fecha"]
+                    nombre = request.form["nombre"]
+                    correo = request.form["correo"]
+                    cel = request.form["celular"]
+                    celular = "+503"+str(cel)
+                    categoria = request.form["categoria"]
+                    producto = request.form["articulo"]
+                    cantidad = request.form["cantidad"]
 
-            return render_template("catalogo.html", data=datos)
+                    mensaje = "Nombre: " + nombre + ", celular: " + celular + ", categoria: " + categoria + ", producto: " + producto + ", cantidad: " + cantidad
+                    pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
+                    id = CatalogoLogic().getIdCatalogo(fecha, nombre, cel, correo, categoria, producto, int(cantidad))[0]['id']
+                    CatalogoLogic().updateEnviado(id)
+                    redirect("http://127.0.0.1:5000/")
+                    return render_template("main.html")
+                return render_template("main.html")
+
+
+
+

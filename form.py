@@ -10,7 +10,7 @@ url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTyj9XZujJrqeRlIafFoeIhQ5
 df = pd.read_csv(url)
 
 print(df)
-
+print(df.loc[:,'Marca temporal'])
 print(len(df.isna('Artículo Hogar')))
 
 i=0

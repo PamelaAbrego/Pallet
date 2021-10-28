@@ -9,9 +9,10 @@
     <h1>Catálogo</h1>
 
     <form action="{{ url_for('catalogo') }}" method="POST">
-      <input type="submit" name="submit" id="submit" value="Enviar mensaje">
+      <input type="hidden" name="envio" id="envio" value="todos">
+      <input type="submit" name="submit" id="submit" value="Enviar todos los mensajes">
     </form>
-
+    <br>
     <table align="center" border="1" style="width:auto; height:20px;">
         <tr>
           <th class="col">Fecha</th>
@@ -33,6 +34,7 @@
             <th>{{item['Cantidad']}}</th>
             <th>
               <form action="{{ url_for('catalogo') }}" method="POST">
+                <input type="hidden" name="envio" id="envio" value="uno">
                 <input type="hidden" name="fecha" id="fecha" value="{{item['Fecha']}}">
                 <input type="hidden" name="nombre" id="nombre" value="{{item['Nombre']}}">
                 <input type="hidden" name="celular" id="celular" value="{{item['Celular']}}">
@@ -49,6 +51,5 @@
         </tr>
     </table>
 
-    <a href="catalogoEnviados">Enviados</a>
 </body>
 </html>

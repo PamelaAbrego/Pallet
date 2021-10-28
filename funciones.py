@@ -12,13 +12,15 @@ class Funciones():
         datos = []
         if len(df.loc[:,'Nombre']) != len(PersonalizadosLogic().getAllPersonalizados()):
             i =0
+            p=0
             while i <= len(df.loc[:,'Nombre'])-1:
                 if df.loc[:,'Producto'][i] == "Personalizado":
                     personalizado = [df.loc[:,'Marca temporal'][i],df.loc[:,'Nombre'][i],df.loc[:,'Correo'][i],df.loc[:,'Celular'][i], df.loc[:,'Descripción'][i]]
-                datos.append(personalizado)
+                    p = p+1
+                    datos.append(personalizado)
                 i = i+1
             n= len(PersonalizadosLogic().getAllPersonalizados())
-            while n <= i-1:
+            while n <= p-1:
                 PersonalizadosLogic().insertPersonalizado(datos[n][0],datos[n][1], datos[n][2], datos[n][3], datos[n][4])
                 n = n+1
         return 1
@@ -43,13 +45,13 @@ class Funciones():
                 if not pd.isna(df['Artículo Hogar'][i]):
                     articulo.append(df.loc[:,'Artículo Hogar'][i])
                     cantidad.append(df.loc[:,'Cantidad Hogar'][i])
-                if not pd.isna(df['Artículo Cocina'][i]):
+                elif not pd.isna(df['Artículo Cocina'][i]):
                     articulo.append(df.loc[:,'Artículo Cocina'][i])
                     cantidad.append(df.loc[:,'Cantidad Cocina'][i])
-                if not pd.isna(df['Artículo Baño'][i]):
+                elif not pd.isna(df['Artículo Baño'][i]):
                     articulo.append(df.loc[:,'Artículo Baño'][i])
                     cantidad.append(df.loc[:,'Cantidad Baño'][i])
-                if not pd.isna(df['Artículo Jardín'][i]):
+                elif not pd.isna(df['Artículo Jardín'][i]):
                     articulo.append(df.loc[:,'Artículo Jardín'][i])
                     cantidad.append(df.loc[:,'Cantidad Jardín'][i])
                 else:
@@ -65,6 +67,7 @@ class Funciones():
                     catalogo = [df.loc[:,'Marca temporal'][i],df.loc[:,'Nombre'][i],df.loc[:,'Correo'][i],df.loc[:,'Celular'][i], df.loc[:,'Categoría'][i], articulo[i], cantidad[i]]
                     datos.append(catalogo)
                 i = i+1
+
             n= len(CatalogoLogic().getAllCatalogo())
             while n <= m-1:
                 CatalogoLogic().insertCatalogo(datos[n][0],datos[n][1],datos[n][2], datos[n][3], datos[n][4], datos[n][5], datos[n][6])

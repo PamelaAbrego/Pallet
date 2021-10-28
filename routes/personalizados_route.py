@@ -14,7 +14,7 @@ class Personalizados:
             if request.method == "GET":
                 Funciones().moveBdPersonalizados()
                 datos = Funciones().getAllPersonalizadosSinEnviar()
-                
+                redirect("http://127.0.0.1:5000/")
                 return render_template("personalizados.html", datos=datos)
             elif request.method == "POST":
                 fecha = request.form["fecha"]
@@ -24,13 +24,13 @@ class Personalizados:
                 celular = "+503"+str(cel)
                 descripcion = request.form["descripcion"]
 
-            mensaje = "Nombre: " + nombre + ", celular: " + celular + ", descripción: " + descripcion
-            pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
+                mensaje = "Nombre: " + nombre + ", celular: " + celular + ", descripción: " + descripcion
+                pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
 
-            Funciones().moveBdPersonalizados()
-            datos = Funciones().getAllPersonalizadosSinEnviar()
+                Funciones().moveBdPersonalizados()
+                datos = Funciones().getAllPersonalizadosSinEnviar()
 
-            id = PersonalizadosLogic().getIdPersonalizado(fecha, nombre, cel, correo, descripcion)[0]['id']
-            PersonalizadosLogic().updateEnviado(id)
-
-            return render_template("personalizados.html", datos=datos)
+                id = PersonalizadosLogic().getIdPersonalizado(fecha, nombre, cel, correo, descripcion)[0]['id']
+                PersonalizadosLogic().updateEnviado(id)
+                redirect("http://127.0.0.1:5000/")
+                return render_template("personalizados.html", datos=datos)

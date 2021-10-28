@@ -10,6 +10,7 @@ from routes.catalogo_route import Catalogo
 from routes.catalogoEnviados_route import CatalogoEnviados
 
 app = Flask(__name__)
+
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 Personalizados.configure_routes(app)

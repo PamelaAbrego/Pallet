@@ -5,16 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 </head>
-<body>
-    <h1>Pallet</h1>
-    <br>
-    <h1>Nuevos:</h1>
-    <a href="personalizados">Ver pedidos personalizados</a>
-    <a class="read-more" href="catalogo">Ver pedidos de catálogo</a>
-    <br>
-    <h1>Contestados:</h1>
-    <a href="personalizadosEnviados">Ver pedidos personalizados contestados</a>
-    <a href="catalogoEnviados">Ver pedidos de catálogo contestados</a>
+<body background="/images/fondo.jpg" style="background-repeat: no-repeat; background-position: center center;">
+    <div align="center">
+        <br>
+        <img class="imagen" src="/images/pallet.jpg" alt="">
+        <br>
+        <p1 class="pallet">Pedidos nuevos</p1>
+        <br><br>
+        <a class="boton" href="personalizados">Personalizados</a>
+        <a class="boton" href="catalogo">Catálogo</a>
+        <br><br><br>
+        <p1 class="pallet">Pedidos contestados</p1>
+        <br><br>
+        <a class="boton"href="personalizadosEnviados">Personalizados contestados</a>
+        <a class="boton" href="catalogoEnviados">Catálogo contestados</a>
+    </div>
 
+    <style>
+        .imagen {
+            height: 200px;
+            width: 650px;
+            align-content: center;
+        }
+        .pallet {
+            font-family: Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif;
+            font-size: 50px;
+            color: rgb(68, 40, 40);
+            font-style: bold;
+        }
+         .boton {
+             font-family: Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif;
+             text-decoration: none;
+             padding: 10px;
+             font-weight: 100;
+             font-size: 40px;
+             color:   #d28559 ;
+             background-color:    #f3e2cc  ;
+             border-radius: 6px;
+         }
+ 
+         .boton:hover {
+            color:  white;
+            background-color:  #c86450;
+         }
+
+     </style>
 </body>
 </html>

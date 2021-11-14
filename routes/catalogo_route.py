@@ -38,6 +38,7 @@ class Catalogo:
                     cantidad = request.form["cantidad"]
 
                     mensaje = "Nombre: " + nombre + ", celular: " + celular + ", categoria: " + categoria + ", producto: " + producto + ", cantidad: " + cantidad
+                    mensaje = "Hola " +nombre + "🧡! Te saluda Andrea del equipo de Pallet & Home Decor✨. Te confirmamos tu orden del producto " + producto + " y una cantidad de " + cantidad + " artículo(s)." 
                     pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
                     id = CatalogoLogic().getIdCatalogo(fecha, nombre, cel, correo, categoria, producto, int(cantidad))[0]['id']
                     CatalogoLogic().updateEnviado(id)

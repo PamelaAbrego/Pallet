@@ -20,7 +20,7 @@ class Catalogo:
                 if envio == "todos":
                     datos = Funciones().getAllCatalogoSinEnviar()
                     for item in datos:
-                        mensaje = "Nombre: " + item['Nombre'] + ", celular: " + str(item['Celular']) + ", categoría: " + item['Categoría'] + " artículo: " + item['Producto'] + " cantidad: " + str(item['Cantidad'])
+                        mensaje = "Hola " + item['Nombre'] + "🧡! Te saluda Andrea del equipo de Pallet & Home Decor✨. Te confirmamos tu orden del producto " + item['Producto'] + " y una cantidad de " + str(item['Cantidad']) + " artículo(s)." 
                         celular = "+503"+str(item['Celular'])
                         pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
                         id = CatalogoLogic().getIdCatalogo(item['Fecha'], item['Nombre'], item['Celular'], item['Correo'], item['Categoría'], item['Producto'], item['Cantidad'])[0]['id']
@@ -37,9 +37,8 @@ class Catalogo:
                     producto = request.form["articulo"]
                     cantidad = request.form["cantidad"]
 
-                    mensaje = "Nombre: " + nombre + ", celular: " + celular + ", categoria: " + categoria + ", producto: " + producto + ", cantidad: " + cantidad
                     mensaje = "Hola " +nombre + "🧡! Te saluda Andrea del equipo de Pallet & Home Decor✨. Te confirmamos tu orden del producto " + producto + " y una cantidad de " + cantidad + " artículo(s)." 
-                    # pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
+                    pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
                     id = CatalogoLogic().getIdCatalogo(fecha, nombre, cel, correo, categoria, producto, int(cantidad))[0]['id']
                     CatalogoLogic().updateEnviado(id)
                     redirect("http://127.0.0.1:5000/")

@@ -23,8 +23,7 @@ class Personalizados:
                 cel = request.form["celular"]
                 celular = "+503"+str(cel)
                 descripcion = request.form["descripcion"]
-
-                mensaje = "Nombre: " + nombre + ", celular: " + celular + ", descripción: " + descripcion
+                mensaje = "Hola " + nombre + "🧡! Te saluda Andrea del equipo de Pallet & Home Decor✨ para continuar el proceso de tu pedido personalizado😃." 
                 pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
 
                 Funciones().moveBdPersonalizados()

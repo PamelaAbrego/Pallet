@@ -3,7 +3,7 @@ from funciones import Funciones
 from logic.personalizados_logic import PersonalizadosLogic
 import bcrypt
 import requests
-#import pywhatkit
+import pywhatkit
 
 class Personalizados:
     @staticmethod
@@ -25,7 +25,7 @@ class Personalizados:
                 descripcion = request.form["descripcion"]
 
                 mensaje = "Nombre: " + nombre + ", celular: " + celular + ", descripción: " + descripcion
-                #pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
+                pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
 
                 Funciones().moveBdPersonalizados()
                 datos = Funciones().getAllPersonalizadosSinEnviar()

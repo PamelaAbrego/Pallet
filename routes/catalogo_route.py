@@ -3,7 +3,7 @@ from funciones import Funciones
 from logic.catalogos_logic import CatalogoLogic
 import bcrypt
 import requests
-# import pywhatkit
+import pywhatkit
 
 class Catalogo:
     @staticmethod
@@ -22,7 +22,7 @@ class Catalogo:
                     for item in datos:
                         mensaje = "Nombre: " + item['Nombre'] + ", celular: " + str(item['Celular']) + ", categoría: " + item['Categoría'] + " artículo: " + item['Producto'] + " cantidad: " + str(item['Cantidad'])
                         celular = "+503"+str(item['Celular'])
-                        # pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
+                        pywhatkit.sendwhatmsg_instantly(celular, mensaje,10,True,10)
                         id = CatalogoLogic().getIdCatalogo(item['Fecha'], item['Nombre'], item['Celular'], item['Correo'], item['Categoría'], item['Producto'], item['Cantidad'])[0]['id']
                         CatalogoLogic().updateEnviado(id)
                     redirect("http://127.0.0.1:5000/")

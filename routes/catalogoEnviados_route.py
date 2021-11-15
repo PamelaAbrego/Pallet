@@ -3,7 +3,7 @@ from funciones import Funciones
 from logic.catalogos_logic import CatalogoLogic
 import bcrypt
 import requests
-import pywhatkit
+#import pywhatkit
 
 class CatalogoEnviados:
     @staticmethod

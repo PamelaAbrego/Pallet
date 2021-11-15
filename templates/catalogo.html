@@ -27,7 +27,7 @@
           <th class="col">Cantidad</th>
 
           {% for item in data %}
-          <tr>
+          <tr class="fila">
             <th>{{item['Fecha']}}</th>
             <th>{{item['Nombre']}}</th>
             <th>{{item['Correo']}}</th>
@@ -63,6 +63,12 @@
 
       .col {
         color: #c86450;
+        font-size: 20px;
+      }
+
+      .fila {
+        font-weight: normal;
+        color: #585858;
       }
       .imagen {
           height: 200px;

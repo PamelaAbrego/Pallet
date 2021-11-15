@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalizados Enviados</title>
 </head>
-<body>
-    <h1>Personalizados Enviados</h1>
+<body background="static/images/fondo.jpg" style="background-position: center center;">
+  <div align = "center">
+    <br>
+      <h1 class="pallet">Personalizados Enviados</h1> 
+  </div>
 
-    <table align="center" border="1" style="width:auto; height:20px;">
+    <table align="center" style="width:auto; height:20px;">
         <tr>
           <th class="col">Fecha</th>
           <th class="col">Cliente</th>
@@ -17,7 +20,7 @@
           <th class="col">Descripción</th>
 
           {% for item in datos %}
-          <tr>
+          <tr class="fila">
             <th>{{item['Fecha']}}</th>
             <th>{{item['Nombre']}}</th>
             <th>{{item['Correo']}}</th>
@@ -27,7 +30,54 @@
           {% endfor %}
         </tr>
     </table>
+    <div align = "center">
+      <br>
+      <a class = "boton1" href="/">Regresar</a> 
+    </div>
 
-    <a href="/">Regresar</a>
+    <style>
+      table {
+        border: #b2b2b2 1px solid;
+      }
+
+      .col {
+        color: #c86450;
+        font-size: 20px;
+      }
+
+      .fila {
+        font-weight: normal;
+        color: #585858;
+      }
+
+      .imagen {
+          height: 200px;
+          width: 650px;
+          align-content: center;
+      }
+      .pallet {
+          font-family: Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif;
+          font-size: 50px;
+          color: rgb(68, 40, 40);
+          font-style: bold;
+      }
+       .boton1 {
+        font-family: Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif;
+        text-decoration: none;
+        padding: 10px;
+        font-weight: 100;
+        font-size: 20px;
+        color:   #d28559 ;
+        background-color:    #f3e2cc  ;
+        border-radius: 6px;
+        border: #d28559;
+      }
+
+        .boton1:hover {
+          color:  white;
+          background-color:  #c86450;
+        }
+
+    </style>
 </body>
 </html>

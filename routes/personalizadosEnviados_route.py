@@ -3,7 +3,7 @@ from funciones import Funciones
 from logic.personalizados_logic import PersonalizadosLogic
 import bcrypt
 import requests
-import pywhatkit
+#import pywhatkit
 
 class PersonalizadosEnviados:
     @staticmethod

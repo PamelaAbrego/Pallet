@@ -21,7 +21,7 @@
           <th class="col">Botón</th>
 
           {% for item in datos %}
-          <tr>
+          <tr class="fila">
             <th>{{item['Fecha']}}</th>
             <th>{{item['Nombre']}}</th>
             <th>{{item['Correo']}}</th>
@@ -50,7 +50,14 @@
 
       .col {
         color: #c86450;
+        font-size: 20px;
       }
+
+      .fila {
+        font-weight: normal;
+        color: #585858;
+      }
+
       .imagen {
           height: 200px;
           width: 650px;

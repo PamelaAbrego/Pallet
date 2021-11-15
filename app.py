@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template, session, redirect, url_for
 from flask_cors import CORS, cross_origin
 from funciones import Funciones
-import pywhatkit
 from datetime import datetime
 from logic.catalogos_logic import CatalogoLogic
 from routes.personalizados_route import Personalizados
